@@ -31,13 +31,13 @@ class linkedList:
         new_node = Node(data)
         new_node.next_node = self.head
         self.head = new_node
-#adding a data at a specific position
+    #adding a data at a specific position
     def insert(self, data, index):
     #If we add data at position zero
         if index == 0:
-            nw_node = Node(data)
-            nw_node.next_node = self.head
-            self.head = nw_node
+            new = Node(data)
+            new.next_node = self.head
+            self.head = new
       #if we add data at position other than zero
         if index > 0:
             new = Node(data)
@@ -50,7 +50,26 @@ class linkedList:
             nxt_node = current.next_node
             prev_node.next_node = new
             new.next_node = nxt_node
-#String representation of linkedList
+
+    #removing data from the linkedlist:
+    def remove(self, key):
+        current = self.head
+        prv_node = None
+        found = False
+        while current and not found:
+            if current.data == key and current is self.head:
+                found = True
+                self.head = current.next_node
+            elif current.data == key:
+                found = True
+                prv_node.next_node = current.next_node
+            else:
+                prv_node = current
+                current = current.next_node
+        return current
+
+        
+    #String representation of linkedList
     def __str__(self):
         current = self.head
         nodes = []
@@ -75,5 +94,6 @@ l.append(82)
 l.append(822)
 l.append(63)
 l.prepend(1)
+l.remove(1)
 l.insert(8,0)
 print(l)
